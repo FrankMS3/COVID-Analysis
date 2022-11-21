@@ -1,8 +1,15 @@
 // Creating the map object
 let myMap = L.map("map", {
-    center: [-20, 153],
-    zoom: 5
+    center: [-28, 133],
+    zoomSnap: 0.25,
+    zoom: 4.25,
+    zoomControl: false,
+    scrollWheelZoom: false,
+    maxZoom: 4.25,
+    minZoom: 4.25,
 });
+
+
   
 // Adding the tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -14,24 +21,23 @@ let link = "https://raw.githubusercontent.com/edwinsteele/d3-projects/master/dat
 
 // The function that will determine the colour of a neighbourhood based on the borough that it belongs to
 function chooseColor(state) {
-    if (state == "Western Australia") return "yellow";
+    if (state == "Western Australia") return "purple";
     else if (state == "Victoria") return "red";
     else if (state == "Northern Territory") return "orange";
     else if (state == "Queensland") return "green";
-    else if (state == "Australian Capital Territory") return "purple";
+    else if (state == "Australian Capital Territory") return "yellow";
     else if (state == "New South Wales") return "blue";
-    else if (state == "Tasmania") return "pink";
+    else if (state == "Tasmania") return "cyan";
+    else if (state == "South Australia") return "pink";
     else return "black";
 };
 
 // Getting our GeoJSON data
 d3.json(link).then(function(data) {
-    console.log(data);
     // Creating a GeoJSON layer with the retrieved data
     L.geoJson(data, {
       // Styling each feature (in this case, a state)
       style: function(features) {
-        console.log(features);
         return {
           color: "white",
           // Call the chooseColor() function to decide which color to colour our neighbourhood. (The colour is based on the borough.)
@@ -57,15 +63,18 @@ d3.json(link).then(function(data) {
             layer.setStyle({
               fillOpacity: 0.5
             });
-          },
-          // When a feature (neighbourhood) is clicked, it enlarges to fit the screen.
-          click: function(event) {
-            myMap.fitBounds(event.target.getBounds());
           }
         });
         // Giving each feature a popup with information that's relevant to it
-        layer.bindPopup("<h1>" + features.properties.STATE_NAME + "</h1> <hr> <h2>" + features.properties.STATE_NAME + "</h2>");
+        layer.bindPopup("<h1>" + features.properties.STATE_NAME + "</h1>");
   
       }
     }).addTo(myMap);
-  });
+});
+
+myMap.dragging.disable();
+myMap.touchZoom.disable();
+myMap.doubleClickZoom.disable();
+myMap.scrollWheelZoom.disable();
+myMap.boxZoom.disable();
+myMap.keyboard.disable();
