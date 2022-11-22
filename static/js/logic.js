@@ -9,8 +9,6 @@ let myMap = L.map("map", {
     minZoom: 4.25,
 });
 
-
-  
 // Adding the tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -19,7 +17,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Use this link to get the GeoJSON data for state boundaries
 let link = "https://raw.githubusercontent.com/edwinsteele/d3-projects/master/data/au-states.geojson";
 
-// The function that will determine the colour of a neighbourhood based on the borough that it belongs to
+// The function that will determine the colour of each state
 function chooseColor(state) {
     if (state == "Western Australia") return "purple";
     else if (state == "Victoria") return "red";
@@ -40,7 +38,7 @@ d3.json(link).then(function(data) {
       style: function(features) {
         return {
           color: "white",
-          // Call the chooseColor() function to decide which color to colour our neighbourhood. (The colour is based on the borough.)
+          // Call the chooseColor() function to decide which color to colour our state
           fillColor: chooseColor(features.properties.STATE_NAME),
           fillOpacity: 0.5,
           weight: 1.5
