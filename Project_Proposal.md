@@ -1,3 +1,4 @@
+![plot](./image/covid.png)
 #                                                   Project Proposal
 
 ## Project Title: Covid-19 Analysis of Australia
