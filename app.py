@@ -5,20 +5,19 @@ import datetime as dt
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
-from sqlalchemy import func
-from flask import Flask
-from flask import jsonify
+from sqlalchemy import create_engine, func
+from flask import Flask, jsonify
 
 
-#Database setup:
+#Database setup: (NEED SQLITE FILE)
 engine = create_engine('sqlite:///Resources/covid-19.sqlite')
 
 #reflect an existing database into a new model
 Base = automap_base()
 #reflect the tables
-Base.prepare(engine, reflect = True)
+Base.prepare(engine, reflect=True)
 
+#Saving reference to the table (What are our references?)
 measurement = Base.classes.measurement
 station = Base.classes.station
 
@@ -33,7 +32,12 @@ def homepage():
     """All available api routes"""
     return (
         f"Welcome to the COVID-19 Database Home Page!<br/>"
-        
+        f"All available API routes:<br/>"
+        f"/api..."
+        f"/api..."
+        f"/api..."
+
+
     )
 
 #creating /api/
