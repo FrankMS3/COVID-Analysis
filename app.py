@@ -7,7 +7,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from config import username, password
 
 
@@ -36,22 +36,12 @@ app = Flask(__name__)
 #creating homepage:
 @app.route("/")
 def homepage():
-    """All available api routes"""
-    return (
-        f"Welcome to the COVID-19 Database Home Page!<br/>"
-        f"All available API routes:<br/>"
-        f"/api..."
-        f"/api..."
-        f"/api..."
-
-
-    )
+    return render_template("index.html")
 
 #creating /api/
 
-@app.route ("/api")
-def vaccination():
-    session = Session(engine)
+@app.route ("/vic")
+def vic():
     #retrieve_data = session.query().all()
     retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
     retrieve_nsw = pd.read_sql_query("SELECT * FROM nsw", conn)
@@ -79,8 +69,17 @@ def vaccination():
     nt_data = jsonify(nt_list)
     sa_data = jsonify(sa_list)
     act_data = jsonify(act_list)
-    session.close()
-    return jsonify(vic_list)
+    return render_template("vic.html", data=vic_data)
+
+@app.route ("/nsw")
+def nsw():
+    #retrieve_data = session.query().all()
+    retrieve_nsw = pd.read_sql_query("SELECT * FROM nsw", conn)
+    #convert list of tuples into normal list
+    nsw_list = list(np.ravel(retrieve_nsw))
+    #convert to json
+    nsw_data = jsonify(nsw_list)
+    return render_template("nsw.html", myData=nsw_data)
     
 
 
