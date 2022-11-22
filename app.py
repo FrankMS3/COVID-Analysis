@@ -2,24 +2,31 @@
 import numpy as np
 import datetime as dt
 
+import pandas as pd
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from flask import Flask, jsonify
+from config import username, password
 
 
-#Database setup: (NEED SQLITE FILE)
-engine = create_engine('sqlite:///Resources/covid-19.sqlite')
+#Database setup:
+protocol = 'postgresql'
 
+host = 'localhost'
+port = 5432
+database_name = 'covid_db'
+rds_connection_string = f'{protocol}://postgres:{password}@{host}:{port}/{database_name}'
+engine = create_engine(rds_connection_string)
+conn = engine.connect()
 #reflect an existing database into a new model
 Base = automap_base()
 #reflect the tables
 Base.prepare(engine, reflect=True)
 
 #Saving reference to the table (What are our references?)
-measurement = Base.classes.measurement
-station = Base.classes.station
+#measurement = Base.classes.measurement
 
 # Flask setup
 app = Flask(__name__)
@@ -45,13 +52,36 @@ def homepage():
 @app.route ("/api")
 def vaccination():
     session = Session(engine)
-    retrieve_data = session.query ().all()
-
-    session.close()
+    #retrieve_data = session.query().all()
+    retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
+    retrieve_nsw = pd.read_sql_query("SELECT * FROM nsw", conn)
+    retrieve_tas = pd.read_sql_query("SELECT * FROM tas", conn)
+    retrieve_wa = pd.read_sql_query("SELECT * FROM wa", conn)
+    retrieve_qld = pd.read_sql_query("SELECT * FROM qld", conn)
+    retrieve_nt = pd.read_sql_query("SELECT * FROM nt", conn)
+    retrieve_sa = pd.read_sql_query("SELECT * FROM sa", conn)
+    retrieve_act = pd.read_sql_query("SELECT * FROM act", conn)
     #convert list of tuples into normal list
-    retrieve_list = list(np.ravel(retrieve_data))
+    vic_list = list(np.ravel(retrieve_vic))
+    nsw_list = list(np.ravel(retrieve_nsw))
+    tas_list = list(np.ravel(retrieve_tas))
+    wa_list = list(np.ravel(retrieve_wa))
+    qld_list = list(np.ravel(retrieve_qld))
+    nt_list = list(np.ravel(retrieve_nt))
+    sa_list = list(np.ravel(retrieve_sa))
+    act_list = list(np.ravel(retrieve_act))
     #convert to json
-    return jsonify (retrieve_list)
+    vic_data = jsonify(vic_list)
+    nsw_data = jsonify(nsw_list)
+    tas_data = jsonify(tas_list)
+    wa_data = jsonify(wa_list)
+    qld_data = jsonify(qld_list)
+    nt_data = jsonify(nt_list)
+    sa_data = jsonify(sa_list)
+    act_data = jsonify(act_list)
+    session.close()
+    return jsonify(vic_list)
+    
 
 
 
