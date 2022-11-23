@@ -39,37 +39,15 @@ def homepage():
     return render_template("index.html")
 
 #creating /api/
-
 @app.route ("/vic")
 def vic():
     #retrieve_data = session.query().all()
     retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
-    retrieve_nsw = pd.read_sql_query("SELECT * FROM nsw", conn)
-    retrieve_tas = pd.read_sql_query("SELECT * FROM tas", conn)
-    retrieve_wa = pd.read_sql_query("SELECT * FROM wa", conn)
-    retrieve_qld = pd.read_sql_query("SELECT * FROM qld", conn)
-    retrieve_nt = pd.read_sql_query("SELECT * FROM nt", conn)
-    retrieve_sa = pd.read_sql_query("SELECT * FROM sa", conn)
-    retrieve_act = pd.read_sql_query("SELECT * FROM act", conn)
     #convert list of tuples into normal list
     vic_list = list(np.ravel(retrieve_vic))
-    nsw_list = list(np.ravel(retrieve_nsw))
-    tas_list = list(np.ravel(retrieve_tas))
-    wa_list = list(np.ravel(retrieve_wa))
-    qld_list = list(np.ravel(retrieve_qld))
-    nt_list = list(np.ravel(retrieve_nt))
-    sa_list = list(np.ravel(retrieve_sa))
-    act_list = list(np.ravel(retrieve_act))
     #convert to json
     vic_data = jsonify(vic_list)
-    nsw_data = jsonify(nsw_list)
-    tas_data = jsonify(tas_list)
-    wa_data = jsonify(wa_list)
-    qld_data = jsonify(qld_list)
-    nt_data = jsonify(nt_list)
-    sa_data = jsonify(sa_list)
-    act_data = jsonify(act_list)
-    return render_template("vic.html", Mydata=vic_data)
+    return render_template("vic.html", myData=vic_data)
 
 @app.route ("/nsw")
 def nsw():
@@ -100,8 +78,8 @@ def wa():
     #convert to json
     wa_data = jsonify(wa_list)
     return render_template("wa.html", myData=wa_data)
-@app.route ("/qld")
 
+@app.route ("/qld")
 def qld():
     #retrieve_data = session.query().all()
     retrieve_qld = pd.read_sql_query("SELECT * FROM qld", conn)
@@ -140,6 +118,16 @@ def act():
     #convert to json
     act_data = jsonify(act_list)
     return render_template("act.html", myData=act_data)
+
+@app.route ("/vicdata")
+def vicdata():
+    #retrieve_data = session.query().all()
+    retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
+    #convert list of tuples into normal list
+    vic_list = list(np.ravel(retrieve_vic))
+    #convert to json
+    vic_data = jsonify(vic_list)
+    return vic_data
 
 if __name__ == '__main__':
     app.run (debug=True)
