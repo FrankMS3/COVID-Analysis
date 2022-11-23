@@ -1,5 +1,7 @@
 // import Chart from 'chart.js/auto';
 const ctx = document.getElementById('myChart');
+var vic_data = JSON.parse(document.getElementById("mydiv").dataset.myData);
+console.log(vic_data)
 
 // new Chart(ctx, {
 //     type: 'line',
