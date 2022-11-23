@@ -3,11 +3,11 @@ import numpy as np
 import datetime as dt
 
 import pandas as pd
-import sqlalchemy
+import json
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template,Response
 from config import username, password
 
 
@@ -123,11 +123,15 @@ def act():
 def vicdata():
     #retrieve_data = session.query().all()
     retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
-    #convert list of tuples into normal list
-    vic_list = list(np.ravel(retrieve_vic))
+    retrieve_vic.set_index('HOSP', inplace=True)
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_vic.iterrows():
+        result[index] = dict(row)
+    
     #convert to json
-    vic_data = jsonify(vic_list)
-    return vic_data
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run (debug=True)
