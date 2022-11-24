@@ -70,8 +70,8 @@
 
     <!-- Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="path/to/chartjs-plugin-annotation/dist/chartjs-plugin-annotation.min.js"></script>
 
-    <!-- <script src="path/to/chartjs/dist/chart.umd.js"></script> -->
   <script>
     const ctx = document.getElementById('myChart');
     var vic_data = d3.json("/vicdata");
@@ -96,21 +96,8 @@
         newCases.unshift(data[i]["NEW CASES"]);
         newRAT.unshift(data[i]["NEW RAT CASES"]);
         vent.unshift(data[i]["VENT"]);
-
-        // dates.reverse();
-        // currCases.reverse();
-        // currRAT.reverse();
-        // deaths.reverse();
-        // hosp.reverse();
-        // icu.reverse();
-        // newCases.reverse();
-        // newRAT.reverse();
-        // vent.reverse();
       };
     };
-    // var vic = vic_data.then(JSON.parse(this))
-    // var count = Object.keys(vic).length;
-    // console.log(count)
     vic_data.then(function(data) {
       sortResponse(data);
     
@@ -119,20 +106,23 @@
       type: 'line',
       data: {
         labels: dates,
-        datasets: [{
-          label: 'Deaths',
-          data: deaths,
-          // fill: false,
-          // borderColor: 'rgb(75, 192, 192)',
-          // tension: 0.1
+        datasets: [
+        {
+          label: 'New Cases',
+          data: newCases,
         },
         {
-          label: 'Current Cases',
+          label: 'New RAT Cases',
+          data: newRAT,
+          hidden: true,
+        },
+        {
+          label: 'Total Cases',
           data: currCases,
           hidden: true,
         },
         {
-          label: 'Current RAT Cases',
+          label: 'Total RAT Cases',
           data: currRAT,
           hidden: true,
         },
@@ -146,25 +136,25 @@
           hidden: true,
         },
         {
-          label: 'New Cases',
-          data: newCases,
-        },
-        {
-          label: 'New RAT Cases',
-          data: newRAT,
-          hidden: true,
-        },
-        {
           label: 'Patients requiring ventilation',
           data: vent,
           hidden: true,
         },
+        {
+          label: 'Deaths',
+          data: deaths,
+        }
       ]
       },
       // options: {
-      //   scales: {
-      //     y: {
-      //       beginAtZero: true
+      //   plugins: {
+      //     annotation: {
+      //       annotations: {
+      //         line1: {
+      //           type: 'line',
+      //           label: 'Delta Wave',
+      //         }
+      //       }
       //     }
       //   }
       // }
