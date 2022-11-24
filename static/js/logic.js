@@ -61,10 +61,21 @@ d3.json(link).then(function(data) {
             layer.setStyle({
               fillOpacity: 0.5
             });
+          },
+          click: function(event) {
+            layer = event.target;
+            if (features.properties.STATE_NAME == "Western Australia") {window.open("/wa", "_self")}
+            else if (features.properties.STATE_NAME == "Victoria") {window.open("/vic", "_self")}
+            else if (features.properties.STATE_NAME == "Northern Territory") {window.open("/nt", "_self")}
+            else if (features.properties.STATE_NAME == "Queensland") {window.open("/qld", "_self")}
+            else if (features.properties.STATE_NAME == "Australian Capital Territory") {window.open("/act", "_self")}
+            else if (features.properties.STATE_NAME == "New South Wales") {window.open("/nsw", "_self")}
+            else if (features.properties.STATE_NAME == "Tasmania") {window.open("/tas", "_self")}
+            else if (features.properties.STATE_NAME == "South Australia") {window.open("/sa", "_self")}
           }
         });
         // Giving each feature a popup with information that's relevant to it
-        layer.bindPopup("<h1>" + features.properties.STATE_NAME + "</h1>");
+        layer.bindPopup("<h2>" + features.properties.STATE_NAME + "</h2>");
   
       }
     }).addTo(myMap);
