@@ -119,19 +119,127 @@ def act():
     act_data = jsonify(act_list)
     return render_template("act.html", myData=act_data)
 
+# @app.route ("/vicdata")
+# def vicdata():
+#     #retrieve_data = session.query().all()
+#     retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
+#     conn.close()
+#     result = [{k: item[k] for k in item.keys()} for item in retrieve_vic]
+#     return jsonify(result)
+
+    
 @app.route ("/vicdata")
 def vicdata():
     #retrieve_data = session.query().all()
     retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
-    retrieve_vic.set_index('HOSP', inplace=True)
+    # retrieve_vic.set_index('dat', inplace=True)
     result = {}
 
     #set a loop to iterate the whole table
     for index,row in retrieve_vic.iterrows():
-        result[index] = dict(row)
+        result[index]= dict(row)
     
     #convert to json
     return jsonify(result)
+
+@app.route ("/nswdata")
+def nswdata():
+    #retrieve_data = session.query().all()
+    retrieve_nsw = pd.read_sql_query("SELECT * FROM nsw", conn)
+    # retrieve_vic.set_index('dat', inplace=True)
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_nsw.iterrows():
+        result[index]= dict(row)
+    
+    #convert to json
+    return jsonify(result)
+
+@app.route ("/tasdata")
+def tasdata():
+    #retrieve_data = session.query().all()
+    retrieve_tas = pd.read_sql_query("SELECT * FROM tas", conn)
+    # retrieve_vic.set_index('dat', inplace=True)
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_tas.iterrows():
+        result[index]= dict(row)
+    
+    #convert to json
+    return jsonify(result)
+
+@app.route ("/wadata")
+def wadata():
+    #retrieve_data = session.query().all()
+    retrieve_wa = pd.read_sql_query("SELECT * FROM wa", conn)
+    # retrieve_vic.set_index('dat', inplace=True)
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_wa.iterrows():
+        result[index]= dict(row)
+    
+    #convert to json
+    return jsonify(result)
+
+@app.route ("/qlddata")
+def qlddata():
+   
+    retrieve_qld = pd.read_sql_query("SELECT * FROM qld", conn)
+  
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_qld.iterrows():
+        result[index]= dict(row)
+    
+    #convert to json
+    return jsonify(result)
+
+@app.route ("/ntdata")
+def ntdata():
+ 
+    retrieve_nt = pd.read_sql_query("SELECT * FROM nt", conn)
+   
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_nt.iterrows():
+        result[index]= dict(row)
+    
+    #convert to json
+    return jsonify(result)
+
+@app.route ("/sadata")
+def sadata():
+    #retrieve_data = session.query().all()
+    retrieve_sa = pd.read_sql_query("SELECT * FROM sa", conn)
+    # retrieve_vic.set_index('dat', inplace=True)
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_sa.iterrows():
+        result[index]= dict(row)
+    
+    #convert to json
+    return jsonify(result)  
+
+@app.route ("/actdata")
+def actdata():
+   
+    retrieve_act = pd.read_sql_query("SELECT * FROM act", conn)
+    
+    result = {}
+
+    #set a loop to iterate the whole table
+    for index,row in retrieve_act.iterrows():
+        result[index]= dict(row)
+    
+    #convert to json
+    return jsonify(result)  
+    
 
 if __name__ == '__main__':
     app.run (debug=True)
