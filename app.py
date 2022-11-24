@@ -119,15 +119,7 @@ def act():
     act_data = jsonify(act_list)
     return render_template("act.html", myData=act_data)
 
-# @app.route ("/vicdata")
-# def vicdata():
-#     #retrieve_data = session.query().all()
-#     retrieve_vic = pd.read_sql_query("SELECT * FROM vic", conn)
-#     conn.close()
-#     result = [{k: item[k] for k in item.keys()} for item in retrieve_vic]
-#     return jsonify(result)
 
-    
 @app.route ("/vicdata")
 def vicdata():
     #retrieve_data = session.query().all()
@@ -146,7 +138,7 @@ def vicdata():
 def nswdata():
     #retrieve_data = session.query().all()
     retrieve_nsw = pd.read_sql_query("SELECT * FROM nsw", conn)
-    # retrieve_vic.set_index('dat', inplace=True)
+    
     result = {}
 
     #set a loop to iterate the whole table
@@ -160,7 +152,7 @@ def nswdata():
 def tasdata():
     #retrieve_data = session.query().all()
     retrieve_tas = pd.read_sql_query("SELECT * FROM tas", conn)
-    # retrieve_vic.set_index('dat', inplace=True)
+    
     result = {}
 
     #set a loop to iterate the whole table
@@ -174,7 +166,7 @@ def tasdata():
 def wadata():
     #retrieve_data = session.query().all()
     retrieve_wa = pd.read_sql_query("SELECT * FROM wa", conn)
-    # retrieve_vic.set_index('dat', inplace=True)
+    
     result = {}
 
     #set a loop to iterate the whole table
@@ -216,7 +208,7 @@ def ntdata():
 def sadata():
     #retrieve_data = session.query().all()
     retrieve_sa = pd.read_sql_query("SELECT * FROM sa", conn)
-    # retrieve_vic.set_index('dat', inplace=True)
+    
     result = {}
 
     #set a loop to iterate the whole table
