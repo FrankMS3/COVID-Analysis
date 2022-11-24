@@ -85,6 +85,7 @@
     let newCases = [];
     let newRAT = [];
     let vent = [];
+    Chart.register('chartjs-plugin-annotation');
     function sortResponse(data) {
       for (var i = 0; i < Object.keys(data).length; i++) {
         dates.unshift(data[i]["DATE"]);
