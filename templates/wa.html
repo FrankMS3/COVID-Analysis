@@ -207,18 +207,80 @@
               },
             ],
           },
-          // options: {
-          //   plugins: {
-          //     annotation: {
-          //       annotations: {
-          //         line1: {
-          //           type: 'line',
-          //           label: 'Delta Wave',
-          //         }
-          //       }
-          //     }
-          //   }
-          // }
+          options: {
+            plugins: {
+              // Using the annotation plugin to annotate the graph
+              annotation: {
+                annotations: {
+                  line1: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jan 31, 2021:", "1st Lockdown", "due to positive quarantine", "hotel security guard"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "25/01/2021",
+                    xMax: "25/01/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line2: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Apr 24, 2021:", "2nd Lockdown"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "19/04/2021",
+                    xMax: "19/04/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line3: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["May 15, 2022:", "Sharp rising cases", "amongst highest per capita cases", "seen anywhere in the world"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -280,
+                    },
+                    xMin: "09/05/2022",
+                    xMax: "09/05/2022",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line4: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Mar 3, 2022:", "Border re-opens"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -340,
+                    },
+                    xMin: "28/02/2022",
+                    xMax: "28/02/2022",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                },
+              },
+            },
+            responsive: true,
+          },
         });
       });
     </script>
