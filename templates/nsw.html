@@ -158,7 +158,7 @@
         // Removing time from dates
         for (var i = 0; i < dates.length; i++) {
           var date = new Date(dates[i]);
-          var noTime = date.toLocaleDateString();
+          var noTime = date.toLocaleDateString("en-AU");
           dateOnly.push(noTime)
         };
 
@@ -207,18 +207,96 @@
               },
             ],
           },
-          // options: {
-          //   plugins: {
-          //     annotation: {
-          //       annotations: {
-          //         line1: {
-          //           type: 'line',
-          //           label: 'Delta Wave',
-          //         }
-          //       }
-          //     }
-          //   }
-          // }
+          options: {
+            plugins: {
+              // Using the annotation plugin to annotate the graph
+              annotation: {
+                annotations: {
+                  line1: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Mar 31, 2020:", "1st Lockdown"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "30/03/2020",
+                    xMax: "30/03/2020",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line2: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jun 26, 2021:", "2nd Lockdown", "to combat Delta surge"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "28/06/2021",
+                    xMax: "28/06/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line3: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Dec 19, 2021:", "Northern beaches lockdown"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "13/12/2021",
+                    xMax: "13/12/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line4: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Mar 20, 2022:", "Bondi Cluster emerges" ],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "14/03/2022",
+                    xMax: "14/03/2022",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line5: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jul 8, 2022:", "Surge in cases", "paired with winter flu"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "04/07/2022",
+                    xMax: "04/07/2022",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                },
+              },
+            },
+            responsive: true,
+          },
         });
       });
     </script>
