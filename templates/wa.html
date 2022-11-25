@@ -121,6 +121,7 @@
 
       // Creating arrays to hold data
       let dates = [];
+      let dateOnly = [];
       let currCases = [];
       let currRAT = [];
       let deaths = [];
@@ -154,11 +155,18 @@
         sortResponse(data);
         console.log(dates);
 
+        // Removing time from dates
+        for (var i = 0; i < dates.length; i++) {
+          var date = new Date(dates[i]);
+          var noTime = date.toLocaleDateString();
+          dateOnly.push(noTime)
+        };
+
         // Creating a line chart with the data
         new Chart(ctx, {
           type: "line",
           data: {
-            labels: dates,
+            labels: dateOnly,
             datasets: [
               {
                 label: "New Cases",
