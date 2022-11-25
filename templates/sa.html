@@ -207,18 +207,80 @@
               },
             ],
           },
-          // options: {
-          //   plugins: {
-          //     annotation: {
-          //       annotations: {
-          //         line1: {
-          //           type: 'line',
-          //           label: 'Delta Wave',
-          //         }
-          //       }
-          //     }
-          //   }
-          // }
+          options: {
+            plugins: {
+              // Using the annotation plugin to annotate the graph
+              annotation: {
+                annotations: {
+                  line1: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Nov 18, 2020:", "1st Lockdown", "due to Woodville outbreak"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "23/11/2020",
+                    xMax: "23/11/2020",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line2: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jul 19, 2021:", "Level 4 restrictions added", "due to positive overseas traveller"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "12/07/2021",
+                    xMax: "12/07/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line3: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jul 20, 2021:", "2nd Lockdown", "after Delta cluster emerges", "from Modbury Hospital"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -250,
+                    },
+                    xMin: "26/07/2021",
+                    xMax: "26/07/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line4: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Nov 23, 2021:", "Border re-opens", "due to 80% vaccination coverage" ],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "29/11/2021",
+                    xMax: "29/11/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                },
+              },
+            },
+            responsive: true,
+          },
         });
       });
     </script>
