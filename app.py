@@ -119,6 +119,10 @@ def act():
     act_data = jsonify(act_list)
     return render_template("act.html", myData=act_data)
 
+@app.route ("/comparisons")
+def comparisons():
+
+    return render_template("comparisons.html")
 
 @app.route ("/vicdata")
 def vicdata():

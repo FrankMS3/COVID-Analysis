@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparisons</title>
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+      crossorigin=""
+    />
+
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+      integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+      crossorigin=""
+    ></script>
+
+    <!-- D3 JS -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+  </head>
+  <body>
+    <!-- Add Navbar -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Home</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarNavDropdown"
+      >
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              States
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/act"
+                >Australian Capital Territory</a
+              >
+              <a class="dropdown-item" href="/nsw">New South Wales</a>
+              <a class="dropdown-item" href="/nt">Northern Territory</a>
+              <a class="dropdown-item" href="/qld">Queensland</a>
+              <a class="dropdown-item" href="/sa">South Australia</a>
+              <a class="dropdown-item" href="/tas">Tasmania</a>
+              <a class="dropdown-item" href="/vic">Victoria</a>
+              <a class="dropdown-item" href="/wa">Western Australia</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/comparisons">Comparisons</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div>
+      <canvas
+        id="myChart"
+        style="height: 300px; width: 700px !important"
+      ></canvas>
+    </div>
+
+    <!-- Bootstrap JavaScript plugins -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Import Chart.js library and it's annotation plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.4.0/chartjs-plugin-annotation.min.js"></script>
+
+    <script>
+      const ctx = document.getElementById("myChart");
+      var vic_data = d3.json("/vicdata");
+      var qld_data = d3.json("/qlddata");
+      var tas_data = d3.json("/tasdata");
+      var wa_data = d3.json("/wadata");
+      var sa_data = d3.json("/sadata");
+      var act_data = d3.json("/actdata");
+      var nt_data = d3.json("/ntdata");
+      var nsw_data = d3.json("/nswdata");
+
+      // Registering the Chart.js annotation plugin
+      Chart.register("chartjs-plugin-annotation");
+
+       // Creating arrays to hold data
+      for (let i = 1; i < 10; i++) {
+        eval('var vic' + i + ' = [];');
+        eval('var nsw' + i + ' = [];');
+        eval('var act' + i + ' = [];');
+        eval('var qld' + i + ' = [];');
+        eval('var tas' + i + ' = [];');
+        eval('var nt' + i + ' = [];');
+        eval('var sa' + i + ' = [];');
+        eval('var wa' + i + ' = [];');
+      };
+      let x = "";
+      // Creating the sortResponse function
+      async function sortVic(data) {
+        await data;
+        for (var i = 0; i < Object.keys(data).length; i++) {
+          // Looping through the retrieved JSON data and appending to arrays (unshift is used to ensure data is in the correct order)
+            vic1.unshift(data[i]["DATE"]);
+            vic2.unshift(data[i]["CURRENT CASES"]);
+            vic3.unshift(data[i]["CURRENT RAT CASES"]);
+            vic4.unshift(data[i]["DEATHS"]);
+            vic5.unshift(data[i]["HOSP"]);
+            vic6.unshift(data[i]["ICU"]);
+            vic7.unshift(data[i]["NEW CASES"]);
+            vic8.unshift(data[i]["NEW RAT CASES"]);
+            vic9.unshift(data[i]["VENT"]);
+          }};
+        function sortNsw(data) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            nsw1.unshift(data[i]["DATE"]);
+            nsw2.unshift(data[i]["CURRENT CASES"]);
+            nsw3.unshift(data[i]["CURRENT RAT CASES"]);
+            nsw4.unshift(data[i]["DEATHS"]);
+            nsw5.unshift(data[i]["HOSP"]);
+            nsw6.unshift(data[i]["ICU"]);
+            nsw7.unshift(data[i]["NEW CASES"]);
+            nsw8.unshift(data[i]["NEW RAT CASES"]);
+            nsw9.unshift(data[i]["VENT"]);
+          }};
+        function sortQld(data) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            qld1.unshift(data[i]["DATE"]);
+            qld2.unshift(data[i]["CURRENT CASES"]);
+            qld3.unshift(data[i]["CURRENT RAT CASES"]);
+            qld4.unshift(data[i]["DEATHS"]);
+            qld5.unshift(data[i]["HOSP"]);
+            qld6.unshift(data[i]["ICU"]);
+            qld7.unshift(data[i]["NEW CASES"]);
+            qld8.unshift(data[i]["NEW RAT CASES"]);
+            qld9.unshift(data[i]["VENT"]);
+          }};
+        function sortAct(data) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            act1.unshift(data[i]["DATE"]);
+            act2.unshift(data[i]["CURRENT CASES"]);
+            act3.unshift(data[i]["CURRENT RAT CASES"]);
+            act4.unshift(data[i]["DEATHS"]);
+            act5.unshift(data[i]["HOSP"]);
+            act6.unshift(data[i]["ICU"]);
+            act7.unshift(data[i]["NEW CASES"]);
+            act8.unshift(data[i]["NEW RAT CASES"]);
+            act9.unshift(data[i]["VENT"]);
+          }};
+        function sortTas(data) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            tas1.unshift(data[i]["DATE"]);
+            tas2.unshift(data[i]["CURRENT CASES"]);
+            tas3.unshift(data[i]["CURRENT RAT CASES"]);
+            tas4.unshift(data[i]["DEATHS"]);
+            tas5.unshift(data[i]["HOSP"]);
+            tas6.unshift(data[i]["ICU"]);
+            tas7.unshift(data[i]["NEW CASES"]);
+            tas8.unshift(data[i]["NEW RAT CASES"]);
+            tas9.unshift(data[i]["VENT"]);
+          }};
+        function sortSa(data) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            sa1.unshift(data[i]["DATE"]);
+            sa2.unshift(data[i]["CURRENT CASES"]);
+            sa3.unshift(data[i]["CURRENT RAT CASES"]);
+            sa4.unshift(data[i]["DEATHS"]);
+            sa5.unshift(data[i]["HOSP"]);
+            sa6.unshift(data[i]["ICU"]);
+            sa7.unshift(data[i]["NEW CASES"]);
+            sa8.unshift(data[i]["NEW RAT CASES"]);
+            sa9.unshift(data[i]["VENT"]);
+          }};
+        function sortWa(data) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            wa1.unshift(data[i]["DATE"]);
+            wa2.unshift(data[i]["CURRENT CASES"]);
+            wa3.unshift(data[i]["CURRENT RAT CASES"]);
+            wa4.unshift(data[i]["DEATHS"]);
+            wa5.unshift(data[i]["HOSP"]);
+            wa6.unshift(data[i]["ICU"]);
+            wa7.unshift(data[i]["NEW CASES"]);
+            wa8.unshift(data[i]["NEW RAT CASES"]);
+            wa9.unshift(data[i]["VENT"]);
+          }};
+        function sortNt(data) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            nt1.unshift(data[i]["DATE"]);
+            nt2.unshift(data[i]["CURRENT CASES"]);
+            nt3.unshift(data[i]["CURRENT RAT CASES"]);
+            nt4.unshift(data[i]["DEATHS"]);
+            nt5.unshift(data[i]["HOSP"]);
+            nt6.unshift(data[i]["ICU"]);
+            nt7.unshift(data[i]["NEW CASES"]);
+            nt8.unshift(data[i]["NEW RAT CASES"]);
+            nt9.unshift(data[i]["VENT"]);
+          }};
+      
+
+    // Retrieving JSON data, then calling sortResponse on it
+    vic_data.then(function (data) {
+        sortVic(data);
+        }).then(function () {
+            nt_data.then(function (x1) {
+                sortNt(x1);
+            });
+        }).then(function () {
+            qld_data.then(function (x2) {
+                sortQld(x2);
+            });
+        }).then(function () {
+            act_data.then(function (x3) {
+                sortAct(x3);
+            });
+        }).then(function () {
+            tas_data.then(function (x4) {
+                sortTas(x4);
+            });
+        }).then(function () {
+            wa_data.then(function (x5) {
+                sortWa(x5);
+            });
+        }).then(function () {
+            sa_data.then(function (x6) {
+                sortSa(x6);
+            });
+        }).then(function () {
+            nsw_data.then(function (x7) {
+                sortNsw(x7);
+            
+            
+        let case_totals = [vic2[vic2.length - 1], nsw2[nsw2.length - 1], qld2[qld2.length - 1], act2[act2.length - 1], tas2[tas2.length - 1], wa2[wa2.length - 1], sa2[sa2.length - 1], nt2[nt2.length - 1]];
+        console.log(case_totals);
+    
+    // Creating a bar chart with the data
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["VIC", "NSW", "QLD", "ACT", "TAS", "WA", "SA", "NT"],
+            datasets: [
+              {
+                label: "Total Cases",
+                data: case_totals,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+        //     scales: {
+        //     x: {
+        //         stacked: true
+        //     },
+        //     y: {
+        //         stacked: true
+        //     }
+        //   }
+        }});
+    });
+    });
+    </script>
+  </body>
+</html>
