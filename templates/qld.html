@@ -204,18 +204,80 @@
               },
             ],
           },
-          // options: {
-          //   plugins: {
-          //     annotation: {
-          //       annotations: {
-          //         line1: {
-          //           type: 'line',
-          //           label: 'Delta Wave',
-          //         }
-          //       }
-          //     }
-          //   }
-          // }
+          options: {
+            plugins: {
+              // Using the annotation plugin to annotate the graph
+              annotation: {
+                annotations: {
+                  line1: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Feb 1, 2021:", "1st Lockdown", "to combat UK strain"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -390,
+                    },
+                    xMin: "08/02/2021",
+                    xMax: "08/02/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line2: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Mar 29, 2021:", "2nd Lockdown"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "22/03/2021",
+                    xMax: "22/03/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line3: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jun 29, 2021:", "3rd Lockdown", "after hospital worker", "tests positive"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -390,
+                    },
+                    xMin: "28/06/2021",
+                    xMax: "28/06/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line4: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jan 15, 2022:", "Border re-opens", "for domestical travel" ],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -390,
+                    },
+                    xMin: "17/01/2022",
+                    xMax: "17/01/2022",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                },
+              },
+            },
+            responsive: true,
+          },
         });
       });
     </script>
