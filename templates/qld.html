@@ -80,7 +80,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Comparisons</a>
+            <a class="nav-link" href="/comparisons">Comparisons</a>
           </li>
         </ul>
       </div>
@@ -155,7 +155,7 @@
         // Removing time from dates
         for (var i = 0; i < dates.length; i++) {
           var date = new Date(dates[i]);
-          var noTime = date.toLocaleDateString();
+          var noTime = date.toLocaleDateString("en-AU");
           dateOnly.push(noTime);
         }
 
