@@ -110,10 +110,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Our JS -->
-    <!-- <script type="text/javascript" src="../static/js/vic.js"></script> -->
-
-    <!-- Chart.js library -->
+    <!-- Import Chart.js library and it's annotation plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="path/to/chartjs-plugin-annotation/dist/chartjs-plugin-annotation.min.js"></script>
 
@@ -121,6 +118,8 @@
       const ctx = document.getElementById("myChart");
       var wa_data = d3.json("/wadata");
       console.log(wa_data);
+
+      // Creating arrays to hold data
       let dates = [];
       let currCases = [];
       let currRAT = [];
@@ -130,9 +129,14 @@
       let newCases = [];
       let newRAT = [];
       let vent = [];
+
+      // Registering the Chart.js annotation plugin
       Chart.register("chartjs-plugin-annotation");
+
+      // Creating the sortResponse function
       function sortResponse(data) {
         for (var i = 0; i < Object.keys(data).length; i++) {
+          // Looping through the retrieved JSON data and appending to arrays (unshift is used to ensure data is in the correct order)
           dates.unshift(data[i]["DATE"]);
           currCases.unshift(data[i]["CURRENT CASES"]);
           currRAT.unshift(data[i]["CURRENT RAT CASES"]);
@@ -144,10 +148,13 @@
           vent.unshift(data[i]["VENT"]);
         }
       }
+
+      // Retrieving JSON data, then calling sortResponse on it
       wa_data.then(function (data) {
         sortResponse(data);
-
         console.log(dates);
+
+        // Creating a line chart with the data
         new Chart(ctx, {
           type: "line",
           data: {
