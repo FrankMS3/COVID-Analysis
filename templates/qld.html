@@ -34,12 +34,6 @@
 
     <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css" />
-    <style>
-      body {
-        height: 600px;
-        width: 1200px;
-      }
-    </style>
   </head>
   <body>
     <!-- Add Navbar -->
@@ -162,8 +156,8 @@
         for (var i = 0; i < dates.length; i++) {
           var date = new Date(dates[i]);
           var noTime = date.toLocaleDateString();
-          dateOnly.push(noTime)
-        };
+          dateOnly.push(noTime);
+        }
 
         // Creating a line chart with the data
         new Chart(ctx, {
