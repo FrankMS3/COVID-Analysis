@@ -164,7 +164,7 @@
         // Removing time from dates
         for (var i = 0; i < dates.length; i++) {
           var date = new Date(dates[i]);
-          var noTime = date.toLocaleDateString();
+          var noTime = date.toLocaleDateString("en-AU");
           dateOnly.push(noTime)
         };
 
@@ -213,18 +213,80 @@
               },
             ],
           },
-          // options: {
-          //   plugins: {
-          //     annotation: {
-          //       annotations: {
-          //         line1: {
-          //           type: 'line',
-          //           label: 'Delta Wave',
-          //         }
-          //       }
-          //     }
-          //   }
-          // }
+          options: {
+            plugins: {
+              // Using the annotation plugin to annotate the graph
+              annotation: {
+                annotations: {
+                  line1: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jun 27, 2021:", "Granites mine outbreak", "leading to 1st Lockdown"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "28/06/2021",
+                    xMax: "28/06/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line2: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Aug 16, 2021:", "2nd Snap Lockdown", "after overseas case"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -270,
+                    },
+                    xMin: "23/08/2021",
+                    xMax: "23/08/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line3: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Nov 4, 2021:", "3rd Lockdown"],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "01/11/2021",
+                    xMax: "01/11/2021",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                  line4: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: true,
+                      content: ["Jan 6, 2022:", "Lockout implemented", "over entire NT" ],
+                      display: true,
+                      color: "#000000",
+                      backgroundColor: "#EEEEEE",
+                      yAdjust: -330,
+                    },
+                    xMin: "03/01/2022",
+                    xMax: "03/01/2022",
+                    borderColor: "#56A6A6",
+                    borderWidth: 2,
+                  },
+                },
+              },
+            },
+            responsive: true,
+          },
         });
       });
     </script>
