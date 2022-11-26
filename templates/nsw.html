@@ -232,120 +232,120 @@
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Mar 31, 2020:", "1st Lockdown"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "30/03/2020",
                     xMax: "30/03/2020",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line2: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Jun 26, 2021:", "2nd Lockdown", "to combat Delta surge"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "28/06/2021",
                     xMax: "28/06/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line3: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Dec 19, 2021:", "Northern beaches lockdown"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "13/12/2021",
                     xMax: "13/12/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line4: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Mar 20, 2022:", "Bondi Cluster emerges" ],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "14/03/2022",
                     xMax: "14/03/2022",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line5: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Jul 8, 2022:", "Surge in cases", "paired with winter flu"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "04/07/2022",
                     xMax: "04/07/2022",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                 },

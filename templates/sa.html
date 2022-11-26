@@ -232,97 +232,96 @@
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Nov 18, 2020:", "1st Lockdown", "due to Woodville outbreak"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "23/11/2020",
                     xMax: "23/11/2020",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line2: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Jul 19, 2021:", "Level 4 restrictions added", "due to positive overseas traveller"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "12/07/2021",
                     xMax: "12/07/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line3: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Jul 20, 2021:", "2nd Lockdown", "after Delta cluster emerges", "from Modbury Hospital"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
-                      yAdjust: 60,
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "26/07/2021",
                     xMax: "26/07/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line4: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: true,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Nov 23, 2021:", "Border re-opens", "due to 80% vaccination coverage" ],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: "start",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "29/11/2021",
                     xMax: "29/11/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 2,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                 },
