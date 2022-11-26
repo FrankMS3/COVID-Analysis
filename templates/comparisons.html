@@ -100,7 +100,7 @@
         <option id="total_rat">Total RAT Cases</option>
         <option id="hospital">Hospitalisations</option>
         <option id="icu">ICU Admissions</option>
-        <option id="vent">Patients requiring Ventilisation</option>
+        <option id="vent">Patients Requiring Ventilation</option>
         <option id="deaths">Total Deaths</option>
       </select>
     </div>
@@ -288,21 +288,13 @@
 
         let case_totals = [vic2[vic2.length - 1], nsw2[nsw2.length - 1], qld2[qld2.length - 1], act2[act2.length - 1], tas2[tas2.length - 1], wa2[wa2.length - 1], sa2[sa2.length - 1], nt2[nt2.length - 1]];
         console.log(case_totals);
-        
         let death_totals = [vic4[vic4.length - 1], nsw4[nsw4.length - 1], qld4[qld4.length - 1], act4[act4.length - 1], tas4[tas4.length - 1], wa4[wa4.length - 1], sa4[sa4.length - 1], nt4[nt4.length - 1]];
-        console.log(death_totals);
-        
         let new_cases = [vic7[vic7.length - 1], nsw7[nsw7.length - 1], qld7[qld7.length - 1], act7[act7.length - 1], tas7[tas7.length - 1], wa7[wa7.length - 1], sa7[sa7.length - 1], nt7[nt7.length - 1]];
-        
         let new_rat = [vic8[vic8.length - 1], nsw8[nsw8.length - 1], qld8[qld8.length - 1], act8[act8.length - 1], tas8[tas8.length - 1], wa8[wa8.length - 1], sa8[sa8.length - 1], nt8[nt8.length - 1]];
-        
         let total_rat = [vic3[vic3.length - 1], nsw3[nsw3.length - 1], qld3[qld3.length - 1], act3[act3.length - 1], tas3[tas3.length - 1], wa3[wa3.length - 1], sa3[sa3.length - 1], nt3[nt3.length - 1]];
-
-        let hospital = [vic5[vic5.length - 1], nsw5[nsw5.length - 1], qld5[qld5.length - 1], act5[act5.length - 1], tas5[tas5.length - 1], wa5[wa5.length - 1], sa5[sa5.length - 1], nt5[nt5.length - 1]];
-
-        let icu = [vic6[vic6.length - 1], nsw6[nsw6.length - 1], qld6[qld6.length - 1], act6[act6.length - 1], tas6[tas6.length - 1], wa6[wa6.length - 1], sa6[sa6.length - 1], nt6[nt6.length - 1]];
-
-        let vent = [vic9[vic9.length - 1], nsw9[nsw9.length - 1], qld9[qld9.length - 1], act9[act9.length - 1], tas9[tas9.length - 1], wa9[wa9.length - 1], sa9[sa9.length - 1], nt9[nt9.length - 1]];
+        let hospital = [Math.round(vic5.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw5.reduce((pv, cv) => pv + cv, 0)), Math.round(qld5.reduce((pv, cv) => pv + cv, 0)), Math.round(act5.reduce((pv, cv) => pv + cv, 0)), Math.round(tas5.reduce((pv, cv) => pv + cv, 0)), Math.round(wa5.reduce((pv, cv) => pv + cv, 0)), Math.round(sa5.reduce((pv, cv) => pv + cv, 0)), Math.round(nt5.reduce((pv, cv) => pv + cv, 0))];
+        let icu = [Math.round(vic6.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw6.reduce((pv, cv) => pv + cv, 0)), Math.round(qld6.reduce((pv, cv) => pv + cv, 0)), Math.round(act6.reduce((pv, cv) => pv + cv, 0)), Math.round(tas6.reduce((pv, cv) => pv + cv, 0)), Math.round(wa6.reduce((pv, cv) => pv + cv, 0)), Math.round(sa6.reduce((pv, cv) => pv + cv, 0)), Math.round(nt6.reduce((pv, cv) => pv + cv, 0))];
+        let vent = [Math.round(vic9.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw9.reduce((pv, cv) => pv + cv, 0)), Math.round(qld9.reduce((pv, cv) => pv + cv, 0)), Math.round(act9.reduce((pv, cv) => pv + cv, 0)), Math.round(tas9.reduce((pv, cv) => pv + cv, 0)), Math.round(wa9.reduce((pv, cv) => pv + cv, 0)), Math.round(sa9.reduce((pv, cv) => pv + cv, 0)), Math.round(nt9.reduce((pv, cv) => pv + cv, 0))];
 
 
     // Creating a bar chart with the data

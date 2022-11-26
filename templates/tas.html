@@ -168,42 +168,58 @@
           data: {
             labels: dateOnly,
             datasets: [
-              {
+            {
                 label: "New Cases",
                 data: newCases,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)'
               },
               {
                 label: "New RAT Cases",
                 data: newRAT,
                 hidden: true,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)'
               },
               {
                 label: "Total Cases",
                 data: currCases,
                 hidden: true,
+                backgroundColor: 'rgba(255, 159, 64, 0.5)',
+                borderColor: 'rgba(255, 159, 64, 1)'
               },
               {
                 label: "Total RAT Cases",
                 data: currRAT,
                 hidden: true,
+                backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                borderColor: 'rgba(255, 205, 86, 1)'
               },
               {
                 label: "Hospitalisations",
                 data: hosp,
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                borderColor: 'rgba(75, 192, 192, 1)'
               },
               {
                 label: "ICU Admissions",
                 data: icu,
                 hidden: true,
+                backgroundColor: 'rgba(153, 102, 255, 0.5)',
+                borderColor: 'rgba(153, 102, 255, 1)'
               },
               {
                 label: "Patients requiring ventilation",
                 data: vent,
                 hidden: true,
+                backgroundColor: 'rgba(201, 203, 207, 0.5)',
+                borderColor: 'rgba(201, 203, 207, 1)'
               },
               {
                 label: "Deaths",
                 data: deaths,
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                borderColor: 'rgba(0, 0, 0, 1)'
               },
             ],
           },
@@ -211,104 +227,109 @@
             plugins: {
               // Using the annotation plugin to annotate the graph
               annotation: {
+                drawTime: 'beforeDatasetsDraw',
                 annotations: {
                   line1: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: false,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Apr 12, 2020:", "Burnie outbreak", "leads to business restrictions"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: 'start',
+                      drawTime: 'afterDatasetsDraw',
+                      // color: "#000000",
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "13/04/2020",
                     xMax: "13/04/2020",
-                    borderColor: "#56A6A6",
-                    borderWidth: 3,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
                     }
                   },
                   line2: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: false,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Oct 15, 2021:", "1st Lockdown"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: 'start',
+                      drawTime: 'afterDatasetsDraw',
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "18/10/2021",
                     xMax: "18/10/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 3,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
-                    },
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
+                    }
                   },
                   line3: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: false,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Dec 15, 2021:", "Border re-opens", "for all domestic travel"],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: 'start',
-                      yAdjust: 50,
+                      drawTime: 'afterDatasetsDraw',
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
+                      
                     },
                     xMin: "29/11/2021",
                     xMax: "29/11/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 3,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
-                    },
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
+                    }
                   },
                   line4: {
                     type: "line",
                     mode: "vertical",
                     label: {
-                      enabled: false,
+                      enabled: (ctx) => ctx.hovered,
                       content: ["Dec 19, 2021:", "Tasmania reaches", "95% vaccination coverage" ],
                       display: true,
-                      color: "#000000",
-                      backgroundColor: "#EEEEEE",
-                      position: 'start',
-                      yAdjust: 110,
+                      drawTime: 'afterDatasetsDraw',
+                      backgroundColor: 'green',
+                      position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "13/12/2021",
                     xMax: "13/12/2021",
-                    borderColor: "#56A6A6",
-                    borderWidth: 3,
-                    enter({chart, element}, event) {
-                      element.options.label.enabled = true;
-                      chart.draw();
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
                     },
-                    leave({chart, element}, event) {
-                      element.options.label.enabled = false;
-                      chart.draw();
-                    },
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
+                    }
                   },
                 },
               },
