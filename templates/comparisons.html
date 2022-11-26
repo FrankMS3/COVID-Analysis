@@ -97,7 +97,7 @@
         <option id="new_cases">New Cases</option>
         <option id="new_rat">New RAT Cases</option>
         <option id="cases">Total Cases</option>
-        <option id="toal_rat">Total RAT Cases</option>
+        <option id="total_rat">Total RAT Cases</option>
         <option id="hospital">Hospitalisations</option>
         <option id="icu">ICU Admissions</option>
         <option id="vent">Patients requiring Ventilisation</option>
@@ -283,7 +283,9 @@
         }).then(function () {
             nsw_data.then(function (x7) {
                 sortNsw(x7);
-            
+        
+        console.log(vic3)
+
         let case_totals = [vic2[vic2.length - 1], nsw2[nsw2.length - 1], qld2[qld2.length - 1], act2[act2.length - 1], tas2[tas2.length - 1], wa2[wa2.length - 1], sa2[sa2.length - 1], nt2[nt2.length - 1]];
         console.log(case_totals);
         
