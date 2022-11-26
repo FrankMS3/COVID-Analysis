@@ -92,6 +92,12 @@
         style="height: 300px; width: 700px !important"
       ></canvas>
     </div>
+    <div class="selectBox">
+      <select id="selData">
+        <option id="cases">Total Cases</option>
+        <option id="deaths">Total Deaths</option>
+      </select>
+    </div>
 
     <!-- Bootstrap JavaScript plugins -->
     <script
@@ -272,12 +278,14 @@
             nsw_data.then(function (x7) {
                 sortNsw(x7);
             
-            
         let case_totals = [vic2[vic2.length - 1], nsw2[nsw2.length - 1], qld2[qld2.length - 1], act2[act2.length - 1], tas2[tas2.length - 1], wa2[wa2.length - 1], sa2[sa2.length - 1], nt2[nt2.length - 1]];
         console.log(case_totals);
-    
+        let death_totals = [vic4[vic4.length - 1], nsw4[nsw4.length - 1], qld4[qld4.length - 1], act4[act4.length - 1], tas4[tas4.length - 1], wa4[wa4.length - 1], sa4[sa4.length - 1], nt4[nt4.length - 1]];
+        console.log(death_totals);
+        
+        
     // Creating a bar chart with the data
-    new Chart(ctx, {
+    const myChart = new Chart(ctx, {
         type: "bar",
         data: {
             labels: ["VIC", "NSW", "QLD", "ACT", "TAS", "WA", "SA", "NT"],
@@ -299,6 +307,22 @@
         //     }
         //   }
         }});
+        const selData = document.getElementById('selData');
+      selData.addEventListener('change', optionChange);
+      function optionChange() {
+        const label = selData.options[selData.selectedIndex].text;
+        const selected = selData.options[selData.selectedIndex].id;
+        myChart.data.datasets[0].label = label;
+        console.log(label);
+        console.log(selected);
+        if (selected == "cases") {
+          myChart.data.datasets[0].data = case_totals;
+        }
+        else if (selected == "deaths") {
+          myChart.data.datasets[0].data = death_totals;
+        };
+        myChart.update();
+      };
     });
     });
     </script>
