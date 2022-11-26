@@ -1,14 +1,10 @@
 #setup dependencies
 import numpy as np
-import datetime as dt
-
 import pandas as pd
-import json
 from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func
-from flask import Flask, jsonify, render_template,Response
-from config import username, password
+from sqlalchemy import create_engine
+from flask import Flask, jsonify, render_template
+from config import password
 
 
 #Database setup:
