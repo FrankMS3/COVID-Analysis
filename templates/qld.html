@@ -222,11 +222,20 @@
                       color: "#000000",
                       backgroundColor: "#EEEEEE",
                       position: "start",
+                      
                     },
                     xMin: "08/02/2021",
                     xMax: "08/02/2021",
                     borderColor: "#56A6A6",
                     borderWidth: 2,
+                    enter({chart, element}, event) {
+                      element.options.label.enabled = true;
+                      chart.draw();
+                    },
+                    leave({chart, element}, event) {
+                      element.options.label.enabled = false;
+                      chart.draw();
+                    }
                   },
                   line2: {
                     type: "line",
@@ -244,6 +253,14 @@
                     xMax: "22/03/2021",
                     borderColor: "#56A6A6",
                     borderWidth: 2,
+                    enter({chart, element}, event) {
+                      element.options.label.enabled = true;
+                      chart.draw();
+                    },
+                    leave({chart, element}, event) {
+                      element.options.label.enabled = false;
+                      chart.draw();
+                    }
                   },
                   line3: {
                     type: "line",
@@ -260,6 +277,14 @@
                     xMax: "28/06/2021",
                     borderColor: "#56A6A6",
                     borderWidth: 2,
+                    enter({chart, element}, event) {
+                      element.options.label.enabled = true;
+                      chart.draw();
+                    },
+                    leave({chart, element}, event) {
+                      element.options.label.enabled = false;
+                      chart.draw();
+                    }
                   },
                   line4: {
                     type: "line",
@@ -276,6 +301,14 @@
                     xMax: "17/01/2022",
                     borderColor: "#56A6A6",
                     borderWidth: 2,
+                    enter({chart, element}, event) {
+                      element.options.label.enabled = true;
+                      chart.draw();
+                    },
+                    leave({chart, element}, event) {
+                      element.options.label.enabled = false;
+                      chart.draw();
+                    }
                   },
                   line5: {
                     type: "line",
@@ -292,6 +325,14 @@
                     xMax: "30/09/2022",
                     borderColor: "#56A6A6",
                     borderWidth: 2,
+                    enter({chart, element}, event) {
+                      element.options.label.enabled = true;
+                      chart.draw();
+                    },
+                    leave({chart, element}, event) {
+                      element.options.label.enabled = false;
+                      chart.draw();
+                    }
                   },
                 },
               },
