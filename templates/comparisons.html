@@ -86,12 +86,9 @@
       </div>
     </nav>
 
-    <div>
-      <canvas
-        id="myChart"
-        style="height: 300px; width: 700px !important"
-      ></canvas>
-    </div>
+    <br>
+    <!-- Dropdown Menu -->
+    <div class="container-fluid">
     <div class="selectBox">
       <select id="selData">
         <option id="new_cases">New Cases</option>
@@ -103,6 +100,15 @@
         <option id="vent">Patients Requiring Ventilation</option>
         <option id="deaths">Total Deaths</option>
       </select>
+    </div>
+    </div>
+
+    <!-- Chart.js graph -->
+    <div class="container-fluid" id="chart-container">
+      <canvas
+        id="myChart"
+        style="height: 300px; width: 700px !important"
+      ></canvas>
     </div>
 
     <!-- Bootstrap JavaScript plugins -->
@@ -152,7 +158,7 @@
         eval('var wa' + i + ' = [];');
       };
       let x = "";
-      // Creating the sortResponse function
+      // Creating the sort functions
       async function sortVic(data) {
         await data;
         for (var i = 0; i < Object.keys(data).length; i++) {
@@ -253,130 +259,124 @@
           }};
       
 
-    // Retrieving JSON data, then calling sortResponse on it
+    // Retrieving JSON data, then calling sorting functions on it
     vic_data.then(function (data) {
         sortVic(data);
         }).then(function () {
             nt_data.then(function (x1) {
                 sortNt(x1);
-            });
-        }).then(function () {
+            }).then(function () {
             qld_data.then(function (x2) {
                 sortQld(x2);
-            });
-        }).then(function () {
+            }).then(function () {
             act_data.then(function (x3) {
                 sortAct(x3);
-            });
-        }).then(function () {
+            }).then(function () {
             tas_data.then(function (x4) {
                 sortTas(x4);
-            });
-        }).then(function () {
+            }).then(function () {
             wa_data.then(function (x5) {
                 sortWa(x5);
-            });
-        }).then(function () {
+            }).then(function () {
             sa_data.then(function (x6) {
                 sortSa(x6);
-            });
-        }).then(function () {
+            }).then(function () {
             nsw_data.then(function (x7) {
-                sortNsw(x7);
-        
-        console.log(vic3)
+                sortNsw(x7);;
+            console.log(vic3)
 
-        let case_totals = [vic2[vic2.length - 1], nsw2[nsw2.length - 1], qld2[qld2.length - 1], act2[act2.length - 1], tas2[tas2.length - 1], wa2[wa2.length - 1], sa2[sa2.length - 1], nt2[nt2.length - 1]];
-        console.log(case_totals);
-        let death_totals = [vic4[vic4.length - 1], nsw4[nsw4.length - 1], qld4[qld4.length - 1], act4[act4.length - 1], tas4[tas4.length - 1], wa4[wa4.length - 1], sa4[sa4.length - 1], nt4[nt4.length - 1]];
-        let new_cases = [vic7[vic7.length - 1], nsw7[nsw7.length - 1], qld7[qld7.length - 1], act7[act7.length - 1], tas7[tas7.length - 1], wa7[wa7.length - 1], sa7[sa7.length - 1], nt7[nt7.length - 1]];
-        let new_rat = [vic8[vic8.length - 1], nsw8[nsw8.length - 1], qld8[139], act8[act8.length - 1], tas8[tas8.length - 1], wa8[wa8.length - 1], sa8[sa8.length - 1], nt8[nt8.length - 1]];
-        let total_rat = [vic3[vic3.length - 1], nsw3[nsw3.length - 1], qld3[142], act3[act3.length - 1], tas3[tas3.length - 1], wa3[142], sa3[sa3.length - 1], nt3[nt3.length - 1]];
-        let hospital = [Math.round(vic5.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw5.reduce((pv, cv) => pv + cv, 0)), Math.round(qld5.reduce((pv, cv) => pv + cv, 0)), Math.round(act5.reduce((pv, cv) => pv + cv, 0)), Math.round(tas5.reduce((pv, cv) => pv + cv, 0)), Math.round(wa5.reduce((pv, cv) => pv + cv, 0)), Math.round(sa5.reduce((pv, cv) => pv + cv, 0)), Math.round(nt5.reduce((pv, cv) => pv + cv, 0))];
-        let icu = [Math.round(vic6.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw6.reduce((pv, cv) => pv + cv, 0)), Math.round(qld6.reduce((pv, cv) => pv + cv, 0)), Math.round(act6.reduce((pv, cv) => pv + cv, 0)), Math.round(tas6.reduce((pv, cv) => pv + cv, 0)), Math.round(wa6.reduce((pv, cv) => pv + cv, 0)), Math.round(sa6.reduce((pv, cv) => pv + cv, 0)), Math.round(nt6.reduce((pv, cv) => pv + cv, 0))];
-        let vent = [Math.round(vic9.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw9.reduce((pv, cv) => pv + cv, 0)), Math.round(qld9.reduce((pv, cv) => pv + cv, 0)), Math.round(act9.reduce((pv, cv) => pv + cv, 0)), Math.round(tas9.reduce((pv, cv) => pv + cv, 0)), Math.round(wa9.reduce((pv, cv) => pv + cv, 0)), Math.round(sa9.reduce((pv, cv) => pv + cv, 0)), Math.round(nt9.reduce((pv, cv) => pv + cv, 0))];
+            // Creating arrays for visualisation
+            let case_totals = [vic2[vic2.length - 1], nsw2[nsw2.length - 1], qld2[qld2.length - 1], act2[act2.length - 1], tas2[tas2.length - 1], wa2[wa2.length - 1], sa2[sa2.length - 1], nt2[nt2.length - 1]];
+            console.log(case_totals);
+            let death_totals = [vic4[vic4.length - 1], nsw4[nsw4.length - 1], qld4[qld4.length - 1], act4[act4.length - 1], tas4[tas4.length - 1], wa4[wa4.length - 1], sa4[sa4.length - 1], nt4[nt4.length - 1]];
+            let new_cases = [vic7[vic7.length - 1], nsw7[nsw7.length - 1], qld7[qld7.length - 1], act7[act7.length - 1], tas7[tas7.length - 1], wa7[wa7.length - 1], sa7[sa7.length - 1], nt7[nt7.length - 1]];
+            let new_rat = [vic8[vic8.length - 1], nsw8[nsw8.length - 1], qld8[139], act8[act8.length - 1], tas8[tas8.length - 1], wa8[wa8.length - 1], sa8[sa8.length - 1], nt8[nt8.length - 1]];
+            let total_rat = [vic3[vic3.length - 1], nsw3[nsw3.length - 1], qld3[142], act3[act3.length - 1], tas3[tas3.length - 1], wa3[142], sa3[sa3.length - 1], nt3[nt3.length - 1]];
+            let hospital = [Math.round(vic5.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw5.reduce((pv, cv) => pv + cv, 0)), Math.round(qld5.reduce((pv, cv) => pv + cv, 0)), Math.round(act5.reduce((pv, cv) => pv + cv, 0)), Math.round(tas5.reduce((pv, cv) => pv + cv, 0)), Math.round(wa5.reduce((pv, cv) => pv + cv, 0)), Math.round(sa5.reduce((pv, cv) => pv + cv, 0)), Math.round(nt5.reduce((pv, cv) => pv + cv, 0))];
+            let icu = [Math.round(vic6.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw6.reduce((pv, cv) => pv + cv, 0)), Math.round(qld6.reduce((pv, cv) => pv + cv, 0)), Math.round(act6.reduce((pv, cv) => pv + cv, 0)), Math.round(tas6.reduce((pv, cv) => pv + cv, 0)), Math.round(wa6.reduce((pv, cv) => pv + cv, 0)), Math.round(sa6.reduce((pv, cv) => pv + cv, 0)), Math.round(nt6.reduce((pv, cv) => pv + cv, 0))];
+            let vent = [Math.round(vic9.reduce((pv, cv) => pv + cv, 0)), Math.round(nsw9.reduce((pv, cv) => pv + cv, 0)), Math.round(qld9.reduce((pv, cv) => pv + cv, 0)), Math.round(act9.reduce((pv, cv) => pv + cv, 0)), Math.round(tas9.reduce((pv, cv) => pv + cv, 0)), Math.round(wa9.reduce((pv, cv) => pv + cv, 0)), Math.round(sa9.reduce((pv, cv) => pv + cv, 0)), Math.round(nt9.reduce((pv, cv) => pv + cv, 0))];
 
 
-    // Creating a bar chart with the data
-    const myChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: ["VIC", "NSW", "QLD", "ACT", "TAS", "WA", "SA", "NT"],
-            datasets: [
-              {
-                label: "Total Cases",
-                data: case_totals,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.5)',
-                  'rgba(255, 159, 64, 0.5)',
-                  'rgba(255, 205, 86, 0.5)',
-                  'rgba(75, 192, 192, 0.5)',
-                  'rgba(54, 162, 235, 0.5)',
-                  'rgba(153, 102, 255, 0.5)',
-                  'rgba(201, 203, 207, 0.5)',
-                  'rgba(0, 0, 0, 0.5)'
-                ],
-                borderColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(255, 159, 64)',
-                  'rgb(255, 205, 86)',
-                  'rgb(75, 192, 192)',
-                  'rgb(54, 162, 235)',
-                  'rgb(153, 102, 255)',
-                  'rgb(201, 203, 207)',
-                  'rgb(0, 0, 0)'
-                ],
-                borderWidth: 1
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-        //     scales: {
-        //     x: {
-        //         stacked: true
-        //     },
-        //     y: {
-        //         stacked: true
-        //     }
-        //   }
-        }});
-        const selData = document.getElementById('selData');
-      selData.addEventListener('change', optionChange);
-      function optionChange() {
-        const label = selData.options[selData.selectedIndex].text;
-        const selected = selData.options[selData.selectedIndex].id;
-        myChart.data.datasets[0].label = label;
-        console.log(label);
-        console.log(selected);
-        if (selected == "cases") {
-          myChart.data.datasets[0].data = case_totals;
-        }
-        else if (selected == "deaths") {
-          myChart.data.datasets[0].data = death_totals;
-        }
-        else if (selected == "new_cases") {
-          myChart.data.datasets[0].data = new_cases;
-        }
-        else if (selected == "new_rat") {
-          myChart.data.datasets[0].data = new_rat;
-        }
-        else if (selected == "total_rat") {
-          myChart.data.datasets[0].data = total_rat;
-        }
-        else if (selected == "hospital") {
-          myChart.data.datasets[0].data = hospital;
-        }
-        else if (selected == "icu") {
-          myChart.data.datasets[0].data = icu;
-        }
-        else {myChart.data.datasets[0].data = vent;
-        };
-      
-        myChart.update();
-      };
-    });
-    });
+            // Creating a bar chart with the data
+            const myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["VIC", "NSW", "QLD", "ACT", "TAS", "WA", "SA", "NT"],
+                    datasets: [
+                      {
+                        label: "Total Cases",
+                        data: case_totals,
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.5)',
+                          'rgba(255, 159, 64, 0.5)',
+                          'rgba(255, 205, 86, 0.5)',
+                          'rgba(75, 192, 192, 0.5)',
+                          'rgba(54, 162, 235, 0.5)',
+                          'rgba(153, 102, 255, 0.5)',
+                          'rgba(201, 203, 207, 0.5)',
+                          'rgba(0, 0, 0, 0.5)'
+                        ],
+                        borderColor: [
+                          'rgb(255, 99, 132)',
+                          'rgb(255, 159, 64)',
+                          'rgb(255, 205, 86)',
+                          'rgb(75, 192, 192)',
+                          'rgb(54, 162, 235)',
+                          'rgb(153, 102, 255)',
+                          'rgb(201, 203, 207)',
+                          'rgb(0, 0, 0)'
+                        ],
+                        borderWidth: 1
+                      },
+                    ],
+                  },
+                  options: {
+                    responsive: true,
+                }});
+
+                // Change current graph on dropdown change
+                const selData = document.getElementById('selData');
+                selData.addEventListener('change', optionChange);
+                function optionChange() {
+                  const label = selData.options[selData.selectedIndex].text;
+                  const selected = selData.options[selData.selectedIndex].id;
+                  myChart.data.datasets[0].label = label;
+                  console.log(label);
+                  console.log(selected);
+                  if (selected == "cases") {
+                    myChart.data.datasets[0].data = case_totals;
+                  }
+                  else if (selected == "deaths") {
+                    myChart.data.datasets[0].data = death_totals;
+                  }
+                  else if (selected == "new_cases") {
+                    myChart.data.datasets[0].data = new_cases;
+                  }
+                  else if (selected == "new_rat") {
+                    myChart.data.datasets[0].data = new_rat;
+                  }
+                  else if (selected == "total_rat") {
+                    myChart.data.datasets[0].data = total_rat;
+                  }
+                  else if (selected == "hospital") {
+                    myChart.data.datasets[0].data = hospital;
+                  }
+                  else if (selected == "icu") {
+                    myChart.data.datasets[0].data = icu;
+                  }
+                  else {myChart.data.datasets[0].data = vent;
+                  };
+                
+                  myChart.update();
+                }
+            })
+            })
+            })
+            })
+            })
+            })
+            })
+        });
     </script>
   </body>
 </html>

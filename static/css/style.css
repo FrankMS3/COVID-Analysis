@@ -8,13 +8,20 @@ html {
   padding-right: 20px;
 }
 
+.selectBox {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+#chart-container {
+    position: relative;
+}
 /* 
 <canvas id="myChart" width="1903" height="951" style="display: block; box-sizing: border-box; height: 951px; width: 1903px;"></canvas> */
 #myChart {
   width: 50%;
-  height: 80%;
+  height: 70%;
   margin-top: 10px;
   margin-bottom: 40px;
-
   padding: 20px 20px 20px;
 }
