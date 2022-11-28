@@ -323,6 +323,32 @@
                       ctx.chart.update();
                     }
                   },
+                  line5: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: (ctx) => ctx.hovered,
+                      content: ["Jan 10, 2022:", "Omicron Surge", "RAT self-tests approved" ],
+                      display: true,
+                      drawTime: 'afterDatasetsDraw',
+                      yAdjust: -20,
+                      backgroundColor: 'green',
+                      position: (ctx) => ctx.hoverPosition,
+                    },
+                    xMin: "10/01/2022",
+                    xMax: "10/01/2022",
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
+                    },
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
+                    }
+                  },
                 },
               },
             },
