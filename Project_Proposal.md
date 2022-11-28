@@ -23,21 +23,19 @@
 
 ### Data Sources:
     https://covidlive.com.au
-    https://www.health.gov.au/health-alerts/covid-19/case-numbers-and-statistics
-    https://nationalmap.gov.au/
 
 ### GitHub Repository:
     https://github.com/FrankMS3/Project-3
 
 
 ### Final Design Sketch:
-    Home Page -
+##### Home Page -
     When the user hovers over a state on the
     map, summary stats will be displayed.
     Clicking on a state will take the user to
     that state’s own individual page.
 
-    State Page -
+##### State Page -
     Each state will have their own individual
     webpage. This page will show
     visualisations specific to the selected state.
@@ -49,6 +47,12 @@
     Notable events will be marked along this
     graph. Another visualisation shown on this
     page will visualise summary statistics.
+
+##### Comparisons Page -
+    This page is used to create a comparison
+    bar chart between all states/territories in term
+    of hospitalisation, deaths, covid case number,
+    ventilisation...
 
 ### Technologies Used:
         
@@ -63,3 +67,4 @@
     D3 
     JavaScript
     JavaScript InfoVis toolkit
+    Chart.js
