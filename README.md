@@ -38,9 +38,7 @@ Please refer to the Project Proposal File for more information about the project
 ### Data sources:
 
     -https://covidlive.com.au
-    -https://www.health.gov.au/health-alerts/covid-19/case-numbers-and-statistics
-    -https://nationalmap.gov.au/
-
+    
 </br>
 
 ### Process of the project
