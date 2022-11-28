@@ -226,16 +226,16 @@
           options: {
             plugins: {
               // Adding in legend title
-              legend: {
+              // legend: {
                 title: {
                   display: true,
                   text: "Victoria",
                   font: {
-                    size: 22,
+                    size: 20,
                     weight: "bold"
                   }
-                }
-              },
+                },
+              // },
               // Using the annotation plugin to annotate the graph
               annotation: {
                 annotations: {
@@ -247,6 +247,7 @@
                       content: ["Mar 30, 2020:", "1st Lockdown"],
                       display: true,
                       backgroundColor: "green",
+                      yAdjust: -50,
                       position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "30/03/2020",
@@ -271,6 +272,7 @@
                       content: ["Jun 4, 2021:", "Delta Surge"],
                       display: true,
                       backgroundColor: "green",
+                      yAdjust: -50,
                       position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "14/06/2021",
@@ -295,6 +297,7 @@
                       content: ["Aug 5, 2021:", "Final Lockdown"],
                       display: true,
                       backgroundColor: "green",
+                      yAdjust: -50,
                       position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "09/08/2021",
@@ -319,6 +322,7 @@
                       content: ["Jan 9, 2022:", "Omicron Surge", "RAT self-tests approved"],
                       display: true,
                       backgroundColor: "green",
+                      yAdjust: -50,
                       position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "10/01/2022",
@@ -343,6 +347,7 @@
                       content: ["Aug 7, 2022:", "VIC reaches", "5000 deaths"],
                       display: true,
                       backgroundColor: "green",
+                      yAdjust: -50,
                       position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "01/08/2022",
@@ -367,6 +372,7 @@
                       content: ["Oct 12, 2022:", "VIC declares", "end of pandemic"],
                       display: true,
                       backgroundColor: "green",
+                      yAdjust: -50,
                       position: (ctx) => ctx.hoverPosition,
                     },
                     xMin: "10/10/2022",
