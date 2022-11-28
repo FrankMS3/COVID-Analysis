@@ -345,6 +345,31 @@
                       ctx.chart.update();
                     }
                   },
+                  line5: {
+                    type: "line",
+                    mode: "vertical",
+                    label: {
+                      enabled: (ctx) => ctx.hovered,
+                      content: ["Jun 27, 2022:", "Conclusion of", "RAT case reporting" ],
+                      display: true,
+                      yAdjust: -20,
+                      backgroundColor: "green",
+                      position: (ctx) => ctx.hoverPosition,
+                    },
+                    xMin: "27/06/2022",
+                    xMax: "27/06/2022",
+                    borderColor: "lightGreen",
+                    borderWidth: 4,
+                    enter(ctx, event) {
+                      ctx.hovered = true;
+                      ctx.hoverPosition = (event.y / ctx.chart.chartArea.height * 100) + '%';
+                      ctx.chart.update();
+                    },
+                    leave(ctx, event) {
+                      ctx.hovered = false;
+                      ctx.chart.update();
+                    }
+                  },
                 },
               },
             },
