@@ -209,14 +209,14 @@
                 borderColor: 'rgba(153, 102, 255, 1)'
               },
               {
-                label: "Patients requiring ventilation",
+                label: "Patients Requiring Ventilation",
                 data: vent,
                 hidden: true,
                 backgroundColor: 'rgba(201, 203, 207, 0.5)',
                 borderColor: 'rgba(201, 203, 207, 1)'
               },
               {
-                label: "Deaths",
+                label: "Total Deaths",
                 data: deaths,
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 borderColor: 'rgba(0, 0, 0, 1)'
@@ -225,6 +225,17 @@
           },
           options: {
             plugins: {
+              // Adding in legend title
+              legend: {
+                title: {
+                  display: true,
+                  text: "South Australia",
+                  font: {
+                    size: 22,
+                    weight: "bold"
+                  }
+                }
+              },
               // Using the annotation plugin to annotate the graph
               annotation: {
                 annotations: {
