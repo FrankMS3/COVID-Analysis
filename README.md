@@ -15,9 +15,9 @@ Please refer to the Project Proposal File for more information about the project
 **_Table of Contents:_**
 
 1. [Purpose of the assignment](#purpose-of-the-assignment)
-1. [Data Sources:](#data-sources:)
+1. [Data Sources](#data-sources)
 1. [Process of the project](#process-of-the-project)
-1. [Visualisation & comparison](#visualisatio-&-comparison)
+1. [Visualisation and Comparison](#visualisation-and-comparison)
 
 </br>
 
@@ -54,7 +54,7 @@ Please refer to the Project Proposal File for more information about the project
 - Chart js and it's annotation plugin: we imported the libary which we haven't learnt before to desgin the line charts and the bar charts.
   </br>
 
-### Visualisation & comparison
+### Visualisation and Comparison
 
 1. Here is our homepage:
    On the navbar by clicking the **state** button, you can link each state's page and by clicking the **comparison** button
@@ -66,14 +66,14 @@ Please refer to the Project Proposal File for more information about the project
    For each of our states, we have created a page which displays a line graph using chart.js that shows a timeline of the different datasets we used.
    The labels shown at the top of the page can be toggled on and off according to the user’s preference. We used a hidden function to hide certain labels when entering our state pages to avoid overcrowding of lines and to only show the most important and useful labels first.
    Our data spans over a time period from Jan 2020 to the current date which will continue to update as new information comes through from the COVIDLIVE website.
-   You may have also noticed some vertical green lines on our graph. We used a plugin to add annotation to our graph that identify key events over the time period for each state. 
-   Another small feature to note is that you can hover over all the data points to get more info regarding the label and the chosen date. 
+   You may have also noticed some vertical green lines on our graph. We used a plugin to add annotation to our graph that identify key events over the time period for each state.
+   Another small feature to note is that you can hover over all the data points to get more info regarding the label and the chosen date.
    ![statepage](./image/vic_hosp_icu.PNG)
-   ![statepage](./image/vic_new_cases_deaths.PNG)
+   ![vicnewpage](./image/vic_new_cases_deaths.PNG)
    </br>
 
 1. Here is our comparison page :
-   We have create a bar chart again using chart.js to display the datasets that we used but comparing them amongst all the states. 
-   At the top of our page, we have added a drop down menu which lists all our labels previously used in our state pages. The user will be able to click on whatever dataset they are interested in to see how each state compares to one another. 
+   We have create a bar chart again using chart.js to display the datasets that we used but comparing them amongst all the states.
+   At the top of our page, we have added a drop down menu which lists all our labels previously used in our state pages. The user will be able to click on whatever dataset they are interested in to see how each state compares to one another.
    Finally, we can hover over each state’s bar to get the actual numbers of the chosen dataset.
-   ![statepage](./image/barchart.PNG)
+   ![barpage](./image/barchart.png)
