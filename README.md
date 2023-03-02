@@ -1,5 +1,7 @@
 # COVID-19 Data Visualisation
 
+Languages used: Python, PostgreSQL, HTML/CSS, JavaScript  
+
 Please refer to the Project Proposal File for more information about the project details.  
 
 1. To get started, create a file named "config.py" in the main folder (the one main.ipynb is in). In there, store your PostgreSQL password in the format -
